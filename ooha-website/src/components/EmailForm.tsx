@@ -15,8 +15,9 @@ export default function EmailForm({
 }: EmailFormProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!email.trim()) {
@@ -24,8 +25,30 @@ export default function EmailForm({
       return;
     }
 
-    setStatus("Thanks! We’ll keep you posted.");
-    setEmail("");
+    setIsLoading(true);
+    setStatus("");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("Thanks! Check your email to confirm.");
+        setEmail("");
+      } else {
+        setStatus(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setStatus("An error occurred. Please try again.");
+      console.error("Subscription error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -44,9 +67,10 @@ export default function EmailForm({
         />
         <button
           type="submit"
-          className="min-h-[60px] bg-[#D0D8EC] px-8 text-base font-semibold uppercase tracking-[0.12em] text-slate-950 transition hover:bg-slate-200"
+          disabled={isLoading}
+          className="min-h-[60px] bg-[#D0D8EC] px-8 text-base font-semibold uppercase tracking-[0.12em] text-slate-950 transition hover:bg-slate-200 disabled:opacity-70"
         >
-          {buttonText}
+          {isLoading ? "Sending..." : buttonText}
         </button>
       </form>
       {status ? <p className="text-sm text-slate-300">{status}</p> : null}
