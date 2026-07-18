@@ -30,7 +30,7 @@ export default function EmailForm({
 
   return (
     <div className={compact ? "space-y-3" : "space-y-4"}>
-      <form onSubmit={handleSubmit} className="grid gap-3 sm:grid-cols-[1fr_auto]">
+      <form onSubmit={handleSubmit} className="grid gap-0 sm:grid-cols-[1fr_auto]">
         <label className="sr-only" htmlFor="hero-email-input">
           Email address
         </label>
@@ -40,11 +40,11 @@ export default function EmailForm({
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder={placeholder}
-          className="min-h-[60px] flex-1 rounded-l-[2rem] border border-slate-300/60 bg-white px-6 text-base text-slate-950 outline-none placeholder:text-slate-400 focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+          className="min-h-[60px] flex-1 border border-slate-300/60 bg-white px-6 text-base text-slate-950 outline-none placeholder:text-slate-400 focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
         <button
           type="submit"
-          className="min-h-[60px] rounded-r-[2rem] bg-[#D0D8EC] px-8 text-base font-semibold uppercase tracking-[0.12em] text-slate-950 transition hover:bg-slate-200"
+          className="min-h-[60px] bg-[#D0D8EC] px-8 text-base font-semibold uppercase tracking-[0.12em] text-slate-950 transition hover:bg-slate-200"
         >
           {buttonText}
         </button>

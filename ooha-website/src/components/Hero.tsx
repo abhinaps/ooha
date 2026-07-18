@@ -2,7 +2,7 @@ import EmailForm from "@/components/EmailForm";
 
 export default function Hero() {
   return (
-    <section className="relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col items-center justify-center px-6 pb-16 pt-24 text-center sm:px-10 sm:pt-28">
+    <section className="relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col items-center justify-center px-6 pb-16 pt-32 text-center sm:px-10 sm:pt-36">
       <div className="w-full">
         <h1 className="text-[clamp(3rem,6vw,5.5rem)] font-black uppercase tracking-[-0.05em] text-slate-950">
           SIGN UP
