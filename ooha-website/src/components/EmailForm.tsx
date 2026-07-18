@@ -53,7 +53,7 @@ export default function EmailForm({
 
   return (
     <div className={compact ? "space-y-3" : "space-y-4"}>
-      <form onSubmit={handleSubmit} className="grid gap-0 sm:grid-cols-[1fr_auto]">
+      <form onSubmit={handleSubmit} className="grid gap-0 sm:grid-cols-[1fr_auto]" noValidate>
         <label className="sr-only" htmlFor="hero-email-input">
           Email address
         </label>
