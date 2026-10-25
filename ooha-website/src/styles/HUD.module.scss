@@ -1,0 +1,78 @@
+.root {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.75rem;
+  color: #fff;
+}
+
+@media (min-width: 640px) {
+  .root {
+    padding: 1rem;
+  }
+}
+
+.tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(27, 29, 43, 0.8);
+  padding: 0.375rem 0.5rem;
+}
+
+.flowerIcon {
+  width: 39px;
+  height: 39px;
+  image-rendering: pixelated;
+}
+
+.value {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(27, 29, 43, 0.8);
+  padding: 0.375rem 0.75rem;
+}
+
+.label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #dce6ff;
+}
+
+.hearts {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.heart {
+  display: block;
+  width: 26px;
+  height: 24px;
+  image-rendering: pixelated;
+}

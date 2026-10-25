@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:character": "node ../scripts/gen-character.mjs",
+    "check:character": "node ../scripts/gen-character.mjs --check && node ../scripts/sim-hitbox.mjs"
   },
   "dependencies": {
     "next": "16.2.10",
@@ -20,6 +22,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "sass": "^1.106.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

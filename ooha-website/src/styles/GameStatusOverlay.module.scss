@@ -1,0 +1,79 @@
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  text-align: center;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0 2rem;
+  font-size: 1.125rem;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: -2px 0 #00e5ff, 2px 0 #ff3e91, 0 2px 8px rgba(20, 21, 32, 0.65);
+  transition: transform 0.2s ease;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.panel {
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: -3px 0 #00e5ff, 3px 0 #ff3e91, 0 2px 8px rgba(0, 0, 0, 0.65);
+}
+
+.secondaryButton {
+  margin-top: 1rem;
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #00d9ff;
+  background: rgba(20, 21, 32, 0.35);
+  padding: 0 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #fff;
+  box-shadow: 0 0 16px rgba(0, 217, 255, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(0, 217, 255, 0.15);
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid #00d9ff;
+  outline-offset: 2px;
+}

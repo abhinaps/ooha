@@ -1,0 +1,54 @@
+.page {
+  min-height: calc(100vh - 4rem);
+  background: #f5efe5;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  height: 85svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #dfe7ff;
+  background-image: url("/hero-background.jpg");
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  --hero-horizon-y: 43%;
+  --game-y-offset: clamp(-90px, calc(-11.25vw + 3.8px), 0px);
+}
+
+@media (min-aspect-ratio: 5 / 3) {
+  .hero {
+    --hero-horizon-y: 21.9vw;
+  }
+}
+
+.gameShell {
+  position: absolute;
+  z-index: 1;
+  top: var(--hero-horizon-y);
+  left: 50%;
+  width: min(calc(100% - 2rem), 800px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%) translateY(var(--game-y-offset));
+}
+
+.closing {
+  width: min(calc(100% - 2rem), 80rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 5rem) 0 1.5rem;
+}
+
+.email {
+  border: 1px solid rgba(20, 21, 32, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  box-shadow: 0 16px 40px rgba(20, 21, 32, 0.08);
+}
