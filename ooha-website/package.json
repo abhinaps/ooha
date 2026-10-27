@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:character": "node ../scripts/gen-character.mjs",
-    "check:character": "node ../scripts/gen-character.mjs --check && node ../scripts/sim-hitbox.mjs"
+    "generate:character": "node ../scripts/gen-character.mts",
+    "check:character": "node ../scripts/gen-character.mts --check && node ../scripts/sim-hitbox.mjs"
   },
   "dependencies": {
     "next": "16.2.10",

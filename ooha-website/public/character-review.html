@@ -9,44 +9,196 @@
   section{margin:0 0 20px}.cards{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
   figure{min-width:100px;min-height:150px;margin:0;padding:12px 16px;display:grid;place-items:center;align-content:center;gap:8px;background:#f7f6f2;color:#3a3b43;border-radius:5px}
   img{width:auto;height:112px;max-width:160px;image-rendering:pixelated}
+  .animation-card{min-width:180px;min-height:220px}.animation-stage{position:relative;width:160px;height:190px;overflow:hidden;border-bottom:2px solid #b9aeb4;background:#f7f6f2}
+  .animation-sprite{position:absolute;left:38%;bottom:8px;width:var(--sprite-width);height:var(--sprite-height);max-width:none;transform:translateX(-50%) translateY(var(--lift,0px))}
+  .run-preview .animation-sprite{left:50%}
+  .animation-ghost{position:absolute;bottom:8px;left:120px;width:32px;height:32px;max-width:none;image-rendering:pixelated}
+  .animation-ghost-high{bottom:48px}
+  .animation-flower{position:absolute;left:160px;bottom:8px;width:32px;height:34px;max-width:none;image-rendering:pixelated}
+  .flower-counter{position:absolute;top:8px;left:8px;display:flex;align-items:center;gap:4px;color:#3a3b43;font-size:11px;font-weight:700}
+  .flower-counter img{width:16px;height:16px;max-width:none;opacity:.28;image-rendering:pixelated}
+  .flower-counter img.is-collected{opacity:1}
+  .animation-card figcaption{font-size:12px}
   figcaption{font-size:11px;color:#62646c}.wide{min-height:106px}.wide img{height:72px;max-width:220px}
   .large-icon{min-width:128px;min-height:152px}.large-icon img{height:112px;max-width:128px}
   .heart{min-width:120px;min-height:128px}.heart img{height:84px}
-  .progress{padding:10px 14px;display:grid;gap:8px;background:#f7f6f2;color:#62646c;border-radius:5px}
-  .progress-row{display:flex;align-items:center;gap:8px}.progress-row span{width:28px;font-size:12px}
+  .progress{display:grid;gap:8px}
+  .palette .cards{gap:6px}.swatch{display:inline-flex;align-items:center;gap:5px;padding:3px 7px 3px 3px;background:#f7f6f2;color:#3a3b43;border-radius:4px;font:11px ui-monospace,monospace}.swatch i{width:16px;height:16px;border-radius:2px;border:1px solid #0003}
+  .progress-row{display:flex;align-items:center;gap:8px}
   .progress-row img{width:39px;height:39px;image-rendering:pixelated}
+  @media(prefers-reduced-motion:reduce){.animation-sprite{transform:translateX(-50%)!important}}
   @media(max-width:600px){body{padding:14px}.cards{gap:8px}figure{min-width:82px;padding:8px}.player img{height:88px}}
 </style>
 <h1>OOHA pixel-art review</h1>
-<p>Generated from <code>scripts/gen-character.mjs</code>. Review at native pixel scale before changing game placement.</p>
-<section class="player"><h2>Run cycle — 18x29 source, 2x in game (36x58)</h2><div class="cards"><figure class=""><img src="/character/run0.svg" alt="run0 pixel-art frame"><figcaption>run0</figcaption></figure>
-<figure class=""><img src="/character/run1.svg" alt="run1 pixel-art frame"><figcaption>run1</figcaption></figure>
-<figure class=""><img src="/character/run2.svg" alt="run2 pixel-art frame"><figcaption>run2</figcaption></figure>
-<figure class=""><img src="/character/run3.svg" alt="run3 pixel-art frame"><figcaption>run3</figcaption></figure>
-<figure class=""><img src="/character/run4.svg" alt="run4 pixel-art frame"><figcaption>run4</figcaption></figure>
-<figure class=""><img src="/character/run5.svg" alt="run5 pixel-art frame"><figcaption>run5</figcaption></figure></div></section>
-<section class="player"><h2>Other poses — 18x29 source, 2x in game</h2><div class="cards"><figure class=""><img src="/character/stand.svg" alt="stand pixel-art frame"><figcaption>stand</figcaption></figure>
-<figure class=""><img src="/character/jumpUp.svg" alt="jumpUp pixel-art frame"><figcaption>jumpUp</figcaption></figure>
-<figure class=""><img src="/character/jumpTuck.svg" alt="jumpTuck pixel-art frame"><figcaption>jumpTuck</figcaption></figure>
-<figure class=""><img src="/character/jumpFall.svg" alt="jumpFall pixel-art frame"><figcaption>jumpFall</figcaption></figure>
-<figure class=""><img src="/character/land.svg" alt="land pixel-art frame"><figcaption>land</figcaption></figure>
-<figure class=""><img src="/character/front.svg" alt="front pixel-art frame"><figcaption>front</figcaption></figure></div></section>
-<section class="player"><h2>Duck — prone crawl, 4 frames (24x10 source, 48x20 in game)</h2><div class="cards"><figure class="wide"><img src="/character/duck0.svg" alt="duck0 pixel-art frame"><figcaption>duck0</figcaption></figure>
-<figure class="wide"><img src="/character/duck1.svg" alt="duck1 pixel-art frame"><figcaption>duck1</figcaption></figure>
-<figure class="wide"><img src="/character/duck2.svg" alt="duck2 pixel-art frame"><figcaption>duck2</figcaption></figure>
-<figure class="wide"><img src="/character/duck3.svg" alt="duck3 pixel-art frame"><figcaption>duck3</figcaption></figure></div></section>
-<section class="player"><h2>Duck transitions — down: stand → fall-0 → fall-1 → crawl; up: rise-0 → squat → run</h2><div class="cards"><figure class="wide"><img src="/character/duckFall0.svg" alt="duckFall0 pixel-art frame"><figcaption>duckFall0</figcaption></figure>
-<figure class="wide"><img src="/character/duckFall1.svg" alt="duckFall1 pixel-art frame"><figcaption>duckFall1</figcaption></figure>
-<figure class="wide"><img src="/character/duckRise0.svg" alt="duckRise0 pixel-art frame"><figcaption>duckRise0</figcaption></figure></div></section>
-<section class="icons"><h2>Ghosts — 16x16 source, 2x in game (32x32)</h2><div class="cards"><figure class="large-icon"><img src="/character/ghost-angry.svg" alt="ghostAngry pixel-art frame"><figcaption>ghostAngry</figcaption></figure>
-<figure class="large-icon"><img src="/character/ghost-cyclops.svg" alt="ghostCyclops pixel-art frame"><figcaption>ghostCyclops</figcaption></figure></div></section>
-<section class="icons"><h2>Flowers — 13x13 source, about 2.5x in game</h2><div class="cards"><figure class="large-icon"><img src="/character/flower-blue.svg" alt="flowerBlue pixel-art frame"><figcaption>flowerBlue</figcaption></figure>
-<figure class="large-icon"><img src="/character/flower-pink.svg" alt="flowerPink pixel-art frame"><figcaption>flowerPink</figcaption></figure>
-<figure class="large-icon"><img src="/character/flower-gold.svg" alt="flowerGold pixel-art frame"><figcaption>flowerGold</figcaption></figure></div></section>
-<section class="icons"><h2>Lives — 13x12 source, 2x in HUD (26x24)</h2><div class="cards"><figure class="heart"><img src="/character/heart-full.svg" alt="heartFull pixel-art frame"><figcaption>heartFull</figcaption></figure>
-<figure class="heart"><img src="/character/heart-empty.svg" alt="heartEmpty pixel-art frame"><figcaption>heartEmpty</figcaption></figure></div></section>
-<section class="icons"><h2>Flower progress — fills from the bottom, one third per flower collected</h2><div class="cards"><div class="progress"><div class="progress-row"><span>0/3</span><img src="/character/flower-blue-progress0.svg" alt="flowerBlue 0 of 3" width="39" height="39"><img src="/character/flower-pink-progress0.svg" alt="flowerPink 0 of 3" width="39" height="39"><img src="/character/flower-gold-progress0.svg" alt="flowerGold 0 of 3" width="39" height="39"></div>
-<div class="progress-row"><span>1/3</span><img src="/character/flower-blue-progress1.svg" alt="flowerBlue 1 of 3" width="39" height="39"><img src="/character/flower-pink-progress1.svg" alt="flowerPink 1 of 3" width="39" height="39"><img src="/character/flower-gold-progress1.svg" alt="flowerGold 1 of 3" width="39" height="39"></div>
-<div class="progress-row"><span>2/3</span><img src="/character/flower-blue-progress2.svg" alt="flowerBlue 2 of 3" width="39" height="39"><img src="/character/flower-pink-progress2.svg" alt="flowerPink 2 of 3" width="39" height="39"><img src="/character/flower-gold-progress2.svg" alt="flowerGold 2 of 3" width="39" height="39"></div>
-<div class="progress-row"><span>3/3</span><img src="/character/flower-blue-progress3.svg" alt="flowerBlue 3 of 3" width="39" height="39"><img src="/character/flower-pink-progress3.svg" alt="flowerPink 3 of 3" width="39" height="39"><img src="/character/flower-gold-progress3.svg" alt="flowerGold 3 of 3" width="39" height="39"></div></div></div></section>
+<p>Every grid below is generated by <code>scripts/gen-character.mts</code> from joints and silhouettes (no image extraction step). Earlier artwork is preserved with the <code>old-</code> prefix.</p>
+<section class="animation-previews"><h2>Animation previews</h2><div class="cards"><figure class="animation-card run-preview"><div class="animation-stage"><img class="animation-sprite" data-animation-preview="run-preview" src="character/run0.svg" alt="" aria-hidden="true" style="--sprite-width:36px;--sprite-height:58px"><div class="flower-counter" aria-hidden="true"><span data-flower-count>0/3</span><img data-collected-flower="0" src="character/flower-blue.svg" alt=""><img data-collected-flower="1" src="character/flower-pink.svg" alt=""><img data-collected-flower="2" src="character/flower-gold.svg" alt=""></div><img class="animation-flower" data-animation-flower="0" src="character/flower-blue.svg" alt="" aria-hidden="true"><img class="animation-flower" data-animation-flower="1" src="character/flower-pink.svg" alt="" aria-hidden="true"><img class="animation-flower" data-animation-flower="2" src="character/flower-gold.svg" alt="" aria-hidden="true"></div><figcaption>Running · collects all 3 flowers</figcaption></figure>
+<figure class="animation-card jump-preview"><div class="animation-stage"><img class="animation-sprite" data-animation-preview="jump-preview" src="character/jumpUp.svg" alt="" aria-hidden="true" style="--sprite-width:36px;--sprite-height:58px"><img class="animation-ghost" data-animation-ghost="jump-preview" src="character/ghost-angry.svg" alt="" aria-hidden="true"></div><figcaption>Jumping · jumps over a low ghost</figcaption></figure>
+<figure class="animation-card duck-preview"><div class="animation-stage"><img class="animation-sprite" data-animation-preview="duck-preview" src="character/run0.svg" alt="" aria-hidden="true" style="--sprite-width:36px;--sprite-height:58px"><img class="animation-ghost animation-ghost-high" data-animation-ghost="duck-preview" src="character/ghost-cyclops.svg" alt="" aria-hidden="true"></div><figcaption>Ducking · ducks under a high ghost</figcaption></figure></div></section>
+<section class="player"><h2>Run cycle — 18x29 source, 2x in game (36x58)</h2><div class="cards"><figure class=""><img src="character/run0.svg" alt="run0 pixel-art frame"><figcaption>run0</figcaption></figure>
+<figure class=""><img src="character/run1.svg" alt="run1 pixel-art frame"><figcaption>run1</figcaption></figure>
+<figure class=""><img src="character/run2.svg" alt="run2 pixel-art frame"><figcaption>run2</figcaption></figure>
+<figure class=""><img src="character/run3.svg" alt="run3 pixel-art frame"><figcaption>run3</figcaption></figure>
+<figure class=""><img src="character/run4.svg" alt="run4 pixel-art frame"><figcaption>run4</figcaption></figure>
+<figure class=""><img src="character/run5.svg" alt="run5 pixel-art frame"><figcaption>run5</figcaption></figure></div></section>
+<section class="player"><h2>Other poses — 18x29 source, 2x in game</h2><div class="cards"><figure class=""><img src="character/stand.svg" alt="stand pixel-art frame"><figcaption>stand</figcaption></figure>
+<figure class=""><img src="character/jumpUp.svg" alt="jumpUp pixel-art frame"><figcaption>jumpUp</figcaption></figure>
+<figure class=""><img src="character/jumpTuck.svg" alt="jumpTuck pixel-art frame"><figcaption>jumpTuck</figcaption></figure>
+<figure class=""><img src="character/jumpFall.svg" alt="jumpFall pixel-art frame"><figcaption>jumpFall</figcaption></figure>
+<figure class=""><img src="character/land.svg" alt="land pixel-art frame"><figcaption>land</figcaption></figure>
+<figure class=""><img src="character/front.svg" alt="front pixel-art frame"><figcaption>front</figcaption></figure></div></section>
+<section class="player"><h2>Duck — prone crawl, 4 frames (24x10 source, 48x20 in game)</h2><div class="cards"><figure class="wide"><img src="character/duck0.svg" alt="duck0 pixel-art frame"><figcaption>duck0</figcaption></figure>
+<figure class="wide"><img src="character/duck1.svg" alt="duck1 pixel-art frame"><figcaption>duck1</figcaption></figure>
+<figure class="wide"><img src="character/duck2.svg" alt="duck2 pixel-art frame"><figcaption>duck2</figcaption></figure>
+<figure class="wide"><img src="character/duck3.svg" alt="duck3 pixel-art frame"><figcaption>duck3</figcaption></figure></div></section>
+<section class="player"><h2>Duck transitions — down: stand → fall-0 → fall-1 → crawl; up: rise-0 → squat → run</h2><div class="cards"><figure class="wide"><img src="character/duckFall0.svg" alt="duckFall0 pixel-art frame"><figcaption>duckFall0</figcaption></figure>
+<figure class="wide"><img src="character/duckFall1.svg" alt="duckFall1 pixel-art frame"><figcaption>duckFall1</figcaption></figure>
+<figure class="wide"><img src="character/duckRise0.svg" alt="duckRise0 pixel-art frame"><figcaption>duckRise0</figcaption></figure></div></section>
+<section class="icons"><h2>Ghosts — 16x16 source, 2x in game (32x32)</h2><div class="cards"><figure class="large-icon"><img src="character/ghost-angry.svg" alt="ghostAngry pixel-art frame"><figcaption>ghostAngry</figcaption></figure>
+<figure class="large-icon"><img src="character/ghost-cyclops.svg" alt="ghostCyclops pixel-art frame"><figcaption>ghostCyclops</figcaption></figure></div></section>
+<section class="icons"><h2>Flowers — 13x13 source, about 2.5x in game</h2><div class="cards"><figure class="large-icon"><img src="character/flower-blue.svg" alt="flowerBlue pixel-art frame"><figcaption>flowerBlue</figcaption></figure>
+<figure class="large-icon"><img src="character/flower-pink.svg" alt="flowerPink pixel-art frame"><figcaption>flowerPink</figcaption></figure>
+<figure class="large-icon"><img src="character/flower-gold.svg" alt="flowerGold pixel-art frame"><figcaption>flowerGold</figcaption></figure></div></section>
+<section class="icons"><h2>Lives — 13x12 source, 2x in HUD (26x24)</h2><div class="cards"><figure class="heart"><img src="character/heart-full.svg" alt="heartFull pixel-art frame"><figcaption>heartFull</figcaption></figure>
+<figure class="heart"><img src="character/heart-empty.svg" alt="heartEmpty pixel-art frame"><figcaption>heartEmpty</figcaption></figure></div></section>
+<section class="icons"><h2>Flower progress — fills from the bottom, one third per flower collected</h2><div class="cards"><div class="progress"><div class="progress-row" aria-label="0 of 3 collected"><img src="character/flower-blue-progress0.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-pink-progress0.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-gold-progress0.svg" alt="" aria-hidden="true" width="39" height="39"></div>
+<div class="progress-row" aria-label="1 of 3 collected"><img src="character/flower-blue-progress1.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-pink-progress1.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-gold-progress1.svg" alt="" aria-hidden="true" width="39" height="39"></div>
+<div class="progress-row" aria-label="2 of 3 collected"><img src="character/flower-blue-progress2.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-pink-progress2.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-gold-progress2.svg" alt="" aria-hidden="true" width="39" height="39"></div>
+<div class="progress-row" aria-label="3 of 3 collected"><img src="character/flower-blue-progress3.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-pink-progress3.svg" alt="" aria-hidden="true" width="39" height="39"><img src="character/flower-gold-progress3.svg" alt="" aria-hidden="true" width="39" height="39"></div></div></div></section>
+<section class="palette"><h2>Palette — one key per colour, light / mid / dark ramps per material</h2><div class="cards"><span class="swatch" title="0 #c8aa72"><i style="background:#c8aa72"></i>0</span><span class="swatch" title="1 #8cc1f0"><i style="background:#8cc1f0"></i>1</span><span class="swatch" title="2 #4a8fe0"><i style="background:#4a8fe0"></i>2</span><span class="swatch" title="3 #0f5aa8"><i style="background:#0f5aa8"></i>3</span><span class="swatch" title="4 #f2ea1b"><i style="background:#f2ea1b"></i>4</span><span class="swatch" title="5 #f08c2a"><i style="background:#f08c2a"></i>5</span><span class="swatch" title="6 #fe4e4e"><i style="background:#fe4e4e"></i>6</span><span class="swatch" title="7 #c92f3b"><i style="background:#c92f3b"></i>7</span><span class="swatch" title="8 #ff8a80"><i style="background:#ff8a80"></i>8</span><span class="swatch" title="9 #ddd2e6"><i style="background:#ddd2e6"></i>9</span><span class="swatch" title="o #1a1520"><i style="background:#1a1520"></i>o</span><span class="swatch" title="s #edb468"><i style="background:#edb468"></i>s</span><span class="swatch" title="S #c98f50"><i style="background:#c98f50"></i>S</span><span class="swatch" title="k #f9cf8e"><i style="background:#f9cf8e"></i>k</span><span class="swatch" title="h #2a2633"><i style="background:#2a2633"></i>h</span><span class="swatch" title="g #1d1a26"><i style="background:#1d1a26"></i>g</span><span class="swatch" title="H #4d4760"><i style="background:#4d4760"></i>H</span><span class="swatch" title="y #1a1520"><i style="background:#1a1520"></i>y</span><span class="swatch" title="r #b81919"><i style="background:#b81919"></i>r</span><span class="swatch" title="q #dc3a35"><i style="background:#dc3a35"></i>q</span><span class="swatch" title="R #7f1111"><i style="background:#7f1111"></i>R</span><span class="swatch" title="a #cb2626"><i style="background:#cb2626"></i>a</span><span class="swatch" title="b #ea4c44"><i style="background:#ea4c44"></i>b</span><span class="swatch" title="A #901515"><i style="background:#901515"></i>A</span><span class="swatch" title="B #5f0d0d"><i style="background:#5f0d0d"></i>B</span><span class="swatch" title="p #36323f"><i style="background:#36323f"></i>p</span><span class="swatch" title="n #5d576e"><i style="background:#5d576e"></i>n</span><span class="swatch" title="P #1d1a26"><i style="background:#1d1a26"></i>P</span><span class="swatch" title="N #1f1c28"><i style="background:#1f1c28"></i>N</span><span class="swatch" title="w #d6d3cf"><i style="background:#d6d3cf"></i>w</span><span class="swatch" title="x #f7f6f3"><i style="background:#f7f6f3"></i>x</span><span class="swatch" title="W #8a8890"><i style="background:#8a8890"></i>W</span><span class="swatch" title="z #a6a4ab"><i style="background:#a6a4ab"></i>z</span><span class="swatch" title="Z #656370"><i style="background:#656370"></i>Z</span><span class="swatch" title="u #876899"><i style="background:#876899"></i>u</span><span class="swatch" title="v #a687b9"><i style="background:#a687b9"></i>v</span><span class="swatch" title="U #5c4071"><i style="background:#5c4071"></i>U</span><span class="swatch" title="d #39294a"><i style="background:#39294a"></i>d</span><span class="swatch" title="l #beb0c7"><i style="background:#beb0c7"></i>l</span><span class="swatch" title="L #8f7da0"><i style="background:#8f7da0"></i>L</span><span class="swatch" title="m #c13fd2"><i style="background:#c13fd2"></i>m</span><span class="swatch" title="M #7d3194"><i style="background:#7d3194"></i>M</span><span class="swatch" title="e #4a2b63"><i style="background:#4a2b63"></i>e</span><span class="swatch" title="C #ffd6cc"><i style="background:#ffd6cc"></i>C</span><span class="swatch" title="O #ffb8ae"><i style="background:#ffb8ae"></i>O</span><span class="swatch" title="c #ff9f98"><i style="background:#ff9f98"></i>c</span><span class="swatch" title="D #ee7a7c"><i style="background:#ee7a7c"></i>D</span><span class="swatch" title="E #c9525e"><i style="background:#c9525e"></i>E</span><span class="swatch" title="i #e82124"><i style="background:#e82124"></i>i</span><span class="swatch" title="I #ff5a4a"><i style="background:#ff5a4a"></i>I</span><span class="swatch" title="j #821616"><i style="background:#821616"></i>j</span><span class="swatch" title="X #ffffff"><i style="background:#ffffff"></i>X</span><span class="swatch" title="t #5d5c70"><i style="background:#5d5c70"></i>t</span><span class="swatch" title="T #7c7b92"><i style="background:#7c7b92"></i>T</span><span class="swatch" title="V #3f3e50"><i style="background:#3f3e50"></i>V</span><span class="swatch" title="G #28511e"><i style="background:#28511e"></i>G</span><span class="swatch" title="F #44701f"><i style="background:#44701f"></i>F</span><span class="swatch" title="J #6a9a34"><i style="background:#6a9a34"></i>J</span><span class="swatch" title="K #8fbd4e"><i style="background:#8fbd4e"></i>K</span><span class="swatch" title="Q #fdf8e5"><i style="background:#fdf8e5"></i>Q</span><span class="swatch" title="f #ecdfb4"><i style="background:#ecdfb4"></i>f</span><span class="swatch" title="Y #a9adb9"><i style="background:#a9adb9"></i>Y</span></div></section>
+<section class="player"><h2>Previous player art (preserved as old-*.svg)</h2><div class="cards"><figure class=""><img src="character/old-stand.svg" alt="Old stand pixel-art frame"><figcaption>old-stand</figcaption></figure>
+<figure class=""><img src="character/old-front.svg" alt="Old front pixel-art frame"><figcaption>old-front</figcaption></figure>
+<figure class=""><img src="character/old-jumpUp.svg" alt="Old jumpUp pixel-art frame"><figcaption>old-jumpUp</figcaption></figure>
+<figure class=""><img src="character/old-jumpTuck.svg" alt="Old jumpTuck pixel-art frame"><figcaption>old-jumpTuck</figcaption></figure>
+<figure class=""><img src="character/old-jumpFall.svg" alt="Old jumpFall pixel-art frame"><figcaption>old-jumpFall</figcaption></figure>
+<figure class=""><img src="character/old-land.svg" alt="Old land pixel-art frame"><figcaption>old-land</figcaption></figure>
+<figure class="wide"><img src="character/old-duckFall0.svg" alt="Old duckFall0 pixel-art frame"><figcaption>old-duckFall0</figcaption></figure>
+<figure class="wide"><img src="character/old-duckFall1.svg" alt="Old duckFall1 pixel-art frame"><figcaption>old-duckFall1</figcaption></figure>
+<figure class="wide"><img src="character/old-duckRise0.svg" alt="Old duckRise0 pixel-art frame"><figcaption>old-duckRise0</figcaption></figure>
+<figure class="wide"><img src="character/old-duck0.svg" alt="Old duck0 pixel-art frame"><figcaption>old-duck0</figcaption></figure>
+<figure class="wide"><img src="character/old-duck1.svg" alt="Old duck1 pixel-art frame"><figcaption>old-duck1</figcaption></figure>
+<figure class="wide"><img src="character/old-duck2.svg" alt="Old duck2 pixel-art frame"><figcaption>old-duck2</figcaption></figure>
+<figure class="wide"><img src="character/old-duck3.svg" alt="Old duck3 pixel-art frame"><figcaption>old-duck3</figcaption></figure>
+<figure class=""><img src="character/old-run0.svg" alt="Old run0 pixel-art frame"><figcaption>old-run0</figcaption></figure>
+<figure class=""><img src="character/old-run1.svg" alt="Old run1 pixel-art frame"><figcaption>old-run1</figcaption></figure>
+<figure class=""><img src="character/old-run2.svg" alt="Old run2 pixel-art frame"><figcaption>old-run2</figcaption></figure>
+<figure class=""><img src="character/old-run3.svg" alt="Old run3 pixel-art frame"><figcaption>old-run3</figcaption></figure>
+<figure class=""><img src="character/old-run4.svg" alt="Old run4 pixel-art frame"><figcaption>old-run4</figcaption></figure>
+<figure class=""><img src="character/old-run5.svg" alt="Old run5 pixel-art frame"><figcaption>old-run5</figcaption></figure></div></section>
+<section class="icons"><h2>Previous game sprites (preserved as old-*.svg)</h2><div class="cards"><figure class="large-icon"><img src="character/old-ghost-angry.svg" alt="Old ghostAngry pixel-art"><figcaption>old-ghostAngry</figcaption></figure>
+<figure class="large-icon"><img src="character/old-ghost-cyclops.svg" alt="Old ghostCyclops pixel-art"><figcaption>old-ghostCyclops</figcaption></figure>
+<figure class="large-icon"><img src="character/old-flower-blue.svg" alt="Old flowerBlue pixel-art"><figcaption>old-flowerBlue</figcaption></figure>
+<figure class="large-icon"><img src="character/old-flower-pink.svg" alt="Old flowerPink pixel-art"><figcaption>old-flowerPink</figcaption></figure>
+<figure class="large-icon"><img src="character/old-flower-gold.svg" alt="Old flowerGold pixel-art"><figcaption>old-flowerGold</figcaption></figure>
+<figure class="large-icon"><img src="character/old-heart-full.svg" alt="Old heartFull pixel-art"><figcaption>old-heartFull</figcaption></figure>
+<figure class="large-icon"><img src="character/old-heart-empty.svg" alt="Old heartEmpty pixel-art"><figcaption>old-heartEmpty</figcaption></figure></div></section>
+<script>
+(() => {
+  const dimensions = {"run0":{"width":36,"height":58},"run1":{"width":36,"height":58},"run2":{"width":36,"height":58},"run3":{"width":36,"height":58},"run4":{"width":36,"height":58},"run5":{"width":36,"height":58},"stand":{"width":36,"height":58},"jumpUp":{"width":36,"height":58},"jumpTuck":{"width":36,"height":58},"jumpFall":{"width":36,"height":58},"land":{"width":36,"height":58},"front":{"width":36,"height":58},"duck0":{"width":48,"height":20},"duck1":{"width":48,"height":20},"duck2":{"width":48,"height":20},"duck3":{"width":48,"height":20},"duckFall0":{"width":48,"height":40},"duckFall1":{"width":48,"height":26},"duckRise0":{"width":48,"height":28}};
+  const timing = {"jumpVelocity":-760,"gravity":2600,"runFrameMs":65,"duckFrameMs":110,"duckInMs":110,"riseMs":140,"landSquashMs":90,"apexBand":230};
+  const run = document.querySelector('[data-animation-preview="run-preview"]');
+  const jump = document.querySelector('[data-animation-preview="jump-preview"]');
+  const duck = document.querySelector('[data-animation-preview="duck-preview"]');
+  const jumpGhost = document.querySelector('[data-animation-ghost="jump-preview"]');
+  const duckGhost = document.querySelector('[data-animation-ghost="duck-preview"]');
+  const flowers = [...document.querySelectorAll("[data-animation-flower]")];
+  const flowerCount = document.querySelector("[data-flower-count]");
+  const collectedFlowers = [...document.querySelectorAll("[data-collected-flower]")];
+  if (!run || !jump || !duck || !jumpGhost || !duckGhost || flowers.length !== 3 || !flowerCount || collectedFlowers.length !== 3 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const runFrames = ["run0", "run1", "run2", "run3", "run4", "run5"];
+  const runFrameMs = timing.runFrameMs;
+  const duckFrameMs = timing.duckFrameMs;
+  const jumpVelocity = Math.abs(timing.jumpVelocity);
+  const gravity = timing.gravity;
+  const apexBand = timing.apexBand;
+  const jumpDuration = (jumpVelocity * 2) / gravity;
+  const flowerTravelMs = 420;
+  const flowerIntervalMs = 850;
+  const flowerCycleMs = flowerIntervalMs * flowers.length;
+  const phases = [
+    { name: "run", duration: 780 },
+    { name: "jump", duration: jumpDuration * 1000 },
+    { name: "land", duration: timing.landSquashMs },
+    { name: "run", duration: 325 },
+    { name: "run", duration: 325 },
+    { name: "duckFall0", duration: timing.duckInMs / 2 },
+    { name: "duckFall1", duration: timing.duckInMs / 2 },
+    { name: "duckCrawl", duration: duckFrameMs * 4 },
+    { name: "duckRise0", duration: timing.riseMs / 2 },
+    { name: "land", duration: timing.riseMs / 2 },
+    { name: "run", duration: 520 },
+  ];
+  const cycleDuration = phases.reduce((sum, phase) => sum + phase.duration, 0);
+  const duckPhaseStart = 780 + jumpDuration * 1000 + timing.landSquashMs + 650;
+  const frameSource = (key) => `character/${key}.svg`;
+  const setFrame = (image, key) => {
+    const source = frameSource(key);
+    if (!image.src.endsWith(source)) image.src = source;
+    const size = dimensions[key];
+    if (!size) throw new Error(`Missing preview dimensions for frame ${key}`);
+    image.style.setProperty("--sprite-width", `${size.width}px`);
+    image.style.setProperty("--sprite-height", `${size.height}px`);
+  };
+  const startedAt = performance.now();
+  const render = (now) => {
+    const elapsed = now - startedAt;
+    let phaseTime = elapsed % cycleDuration;
+    let phase = phases[0];
+    for (const candidate of phases) {
+      if (phaseTime < candidate.duration) {
+        phase = candidate;
+        break;
+      }
+      phaseTime -= candidate.duration;
+    }
+
+    const runningFrame = runFrames[Math.floor(elapsed / runFrameMs) % runFrames.length];
+    setFrame(run, runningFrame);
+    setFrame(jump, runningFrame);
+    setFrame(duck, runningFrame);
+    jump.style.setProperty("--lift", "0px");
+    jumpGhost.style.display = phase.name === "jump" ? "block" : "none";
+    duckGhost.style.display = phase.name.startsWith("duck") ? "block" : "none";
+    const flowerCycleTime = elapsed % flowerCycleMs;
+    const activeFlowerIndex = Math.floor(flowerCycleTime / flowerIntervalMs);
+    const flowerTime = flowerCycleTime % flowerIntervalMs;
+    const flowersCollected = Math.min(
+      flowers.length,
+      activeFlowerIndex + (flowerTime >= flowerTravelMs ? 1 : 0),
+    );
+    flowerCount.textContent = `${flowersCollected}/${flowers.length}`;
+    collectedFlowers.forEach((flower, index) => {
+      flower.classList.toggle("is-collected", index < flowersCollected);
+    });
+    flowers.forEach((flower, index) => {
+      const isActive = index === activeFlowerIndex && flowerTime < flowerTravelMs;
+      flower.style.display = isActive ? "block" : "none";
+      if (isActive) {
+        flower.style.left = `${160 - (90 * flowerTime / flowerTravelMs)}px`;
+      }
+    });
+    if (phase.name === "jump") {
+      const seconds = phaseTime / 1000;
+      const velocity = -jumpVelocity + gravity * seconds;
+      const lift = jumpVelocity * seconds - 0.5 * gravity * seconds * seconds;
+      jump.style.setProperty("--lift", `-${Math.max(0, lift)}px`);
+      jumpGhost.style.left = `${120 - (250 * seconds)}px`;
+      setFrame(jump, velocity > apexBand ? "jumpFall" : velocity < -apexBand ? "jumpUp" : "jumpTuck");
+    } else if (phase.name === "land") {
+      setFrame(jump, "land");
+    } else if (phase.name === "duckCrawl") {
+      setFrame(duck, `duck${Math.floor(phaseTime / duckFrameMs) % 4}`);
+    } else if (phase.name.startsWith("duck")) {
+      setFrame(duck, phase.name);
+    }
+    const duckElapsed = (elapsed % cycleDuration) - duckPhaseStart;
+    if (duckGhost.style.display === "block") {
+      duckGhost.style.left = `${160 - (250 * duckElapsed / 1000)}px`;
+    }
+
+    requestAnimationFrame(render);
+  };
+  requestAnimationFrame(render);
+})();
+</script>
 </html>
