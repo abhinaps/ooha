@@ -18,8 +18,8 @@ export default function Home() {
           <div className={styles.email}>
             <EmailCapture />
           </div>
-          <Footer />
         </div>
+        <Footer />
       </main>
     </div>
   );

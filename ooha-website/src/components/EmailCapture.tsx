@@ -30,7 +30,7 @@ export default function EmailCapture({
     <section id="email" className={styles.root}>
       <div className={styles.content}>
         <p className={styles.eyebrow}>Stay in the loop</p>
-        <h2 className={styles.title}>Get a launch notification when the drop is live.</h2>
+        <h2 className={styles.title}>We&apos;ll send you a little note when it&apos;s time.</h2>
         {form}
       </div>
     </section>

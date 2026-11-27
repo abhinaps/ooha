@@ -16,7 +16,7 @@ export default function Header() {
           />
         </div>
 
-        <p className={styles.label}>WE ARE LAUNCHING SOON</p>
+        <p className={styles.label}>LAUNCHING SOON</p>
       </div>
     </header>
   );

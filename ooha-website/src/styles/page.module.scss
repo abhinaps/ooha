@@ -6,25 +6,21 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 85vh;
-  height: 85svh;
+  height: max(
+    15rem,
+    33.44vw,
+    calc(13.57vw + min(calc(30vw - 0.6rem), 15rem) + 2.5rem)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: #dfe7ff;
-  background-image: url("/hero-background.jpg");
-  background-position: center top;
-  background-size: cover;
+  --hero-horizon-y: calc(100% - 13.57vw);
+  background-color: #bbd3fb;
+  background-image: url("/pixel-bg-hero-extended.webp");
+  background-position: center bottom;
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  --hero-horizon-y: 43%;
-  --game-y-offset: clamp(-90px, calc(-11.25vw + 3.8px), 0px);
-}
-
-@media (min-aspect-ratio: 5 / 3) {
-  .hero {
-    --hero-horizon-y: 21.9vw;
-  }
 }
 
 .gameShell {
@@ -36,19 +32,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(-50%, -50%) translateY(var(--game-y-offset));
+  transform: translate(-50%, -80%);
 }
 
 .closing {
-  width: min(calc(100% - 2rem), 80rem);
-  margin: 0 auto;
-  padding: clamp(2rem, 6vw, 5rem) 0 1.5rem;
+  width: 100%;
+  margin: 0;
+  padding: clamp(2.5rem, 5vw, 4rem) 1rem;
+  background: #f5efe5;
 }
 
 .email {
-  border: 1px solid rgba(20, 21, 32, 0.12);
+  width: min(100%, 58rem);
+  margin: 0 auto;
+  border: 1px solid #dce5f2;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.72);
-  padding: clamp(1.5rem, 5vw, 3rem);
-  box-shadow: 0 16px 40px rgba(20, 21, 32, 0.08);
+  background: #fff;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 5vw, 3.5rem);
+  box-shadow: 0 14px 36px rgba(38, 57, 84, 0.08);
 }

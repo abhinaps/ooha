@@ -3,7 +3,7 @@
 }
 
 .content {
-  max-width: 58rem;
+  max-width: 48rem;
   margin: 0 auto;
   text-align: center;
 }
@@ -11,23 +11,24 @@
 .eyebrow {
   margin: 0;
   color: #4a5d79;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
 .title {
-  margin: 1rem 0 0;
+  margin: 0.75rem 0 0;
   color: #1a1a1a;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 600;
-  letter-spacing: -0.05em;
+  font-size: clamp(1.75rem, 3vw, 2.375rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
 }
 
 .formWrap {
   width: 100%;
-  max-width: 48rem;
+  max-width: 34rem;
   margin-top: 1.5rem;
   margin-inline: auto;
 }
@@ -49,25 +50,25 @@
 .form {
   display: flex;
   width: 100%;
-  min-height: 3.75rem;
+  min-height: 3.5rem;
   overflow: hidden;
-  border: 1px solid rgba(20, 21, 32, 0.2);
-  border-radius: 9999px;
+  border: 1px solid #cbd6e7;
+  border-radius: 0.75rem;
   background: #fff;
 }
 
 .form:focus-within {
-  border-color: #4d5b7d;
-  box-shadow: 0 0 0 2px rgba(208, 216, 236, 1);
+  border-color: #54709a;
+  box-shadow: 0 0 0 3px rgba(84, 112, 154, 0.16);
 }
 
 .input {
-  flex: 0 1 65%;
-  width: 65%;
+  flex: 1 1 auto;
+  width: auto;
   min-width: 0;
   border: 0;
   background: transparent;
-  padding: 0 1.25rem;
+  padding: 0 1.125rem;
   color: #1a1a1a;
   font-size: 1rem;
   outline: none;
@@ -78,24 +79,23 @@
 }
 
 .button {
-  flex: 1 0 35%;
-  min-width: 0;
-  min-height: 3.75rem;
+  flex: 0 0 10rem;
+  min-width: 8rem;
+  min-height: 3.5rem;
   border: 0;
-  border-left: 1px solid rgba(20, 21, 32, 0.12);
-  background: #d0d8ec;
-  padding: 0 1rem;
+  background: #bbd3fb;
+  padding: 0 1.25rem;
   color: #1a1a1a;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
 .button:hover {
-  background: #c7d2ee;
+  background: #a9c5f3;
 }
 
 .button:disabled {
@@ -111,13 +111,15 @@
 
 @media (max-width: 420px) {
   .input {
-    padding-inline: 0.875rem;
-    font-size: 0.9rem;
+    padding-inline: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .button {
-    padding-inline: 0.5rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
+    flex-basis: 7.5rem;
+    min-width: 7rem;
+    padding-inline: 0.75rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
   }
 }

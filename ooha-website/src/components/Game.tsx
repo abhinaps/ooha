@@ -296,14 +296,6 @@ const drawBackgroundFrame = (
   }
 };
 
-const drawGroundFrame = (context: CanvasRenderingContext2D, elapsed: number) => {
-  for (let x = 0; x < CANVAS_WIDTH + 40; x += 20) {
-    const offset = ((elapsed * 0.35) % 20) + x;
-    context.fillStyle = "rgba(46, 58, 10, 0.42)";
-    context.fillRect((offset % 40) - 8, GROUND_Y + 12, 12, 3);
-  }
-};
-
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const gameRef = useRef<HTMLDivElement | null>(null);
@@ -437,13 +429,12 @@ export default function Game() {
     if (backgroundTile) {
       drawBackgroundFrame(context, backgroundTile, 0);
     }
-    drawGroundFrame(context, 0);
     drawPlayerSprite(context, "stand", PLAYER_X, GROUND_Y);
   }, [backgroundLoaded, gameState]);
 
   useEffect(() => {
     const img = new Image();
-    img.src = "/game-bg-tile.png";
+    img.src = "/pixel-bg-game.webp";
     img.onload = () => {
       backgroundImageRef.current = img;
       setBackgroundLoaded(true);
@@ -626,8 +617,6 @@ export default function Game() {
         const scrollOffset = (world.elapsed * world.speed * 0.45) % tileWidth;
         drawBackgroundFrame(context2D, backgroundTile, scrollOffset);
       }
-
-      drawGroundFrame(context2D, world.elapsed * world.speed);
 
       world.flowers.forEach((flower) => {
         drawGameSprite(
