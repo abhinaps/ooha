@@ -46,3 +46,123 @@
     transparent 3px
   );
 }
+
+.wrapper {
+  display: contents;
+}
+
+.immersive {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+  background: #141520;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overscroll-behavior: none;
+}
+
+.immersive .gameFrame {
+  width: min(
+    100%,
+    calc((100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 8 / 3)
+  );
+  width: min(
+    100%,
+    calc((100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 8 / 3)
+  );
+  max-width: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.immersive .gameFrameCanvas {
+  image-rendering: pixelated;
+}
+
+.touchLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  touch-action: none;
+}
+
+.hint {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-shadow: -2px 0 #00e5ff, 2px 0 #ff3e91, 0 2px 8px rgba(0, 0, 0, 0.65);
+  pointer-events: none;
+  opacity: 0;
+  animation: hintFade 2.4s ease forwards;
+}
+
+.hintDuck {
+  left: 0;
+  width: 40%;
+}
+
+.hintJump {
+  right: 0;
+  width: 60%;
+}
+
+@keyframes hintFade {
+  0% { opacity: 0; }
+  15%, 80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.duckIcon {
+  position: absolute;
+  left: max(1rem, env(safe-area-inset-left));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.pauseButton {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  z-index: 15;
+  width: 3rem;
+  height: 3rem;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(20, 21, 32, 0.35);
+  color: #fff;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint {
+    animation: none;
+    opacity: 1;
+  }
+}

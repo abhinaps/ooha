@@ -1,9 +1,12 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { useCallback, useEffect, useRef, useState } from "react";
 import HUD from "@/components/HUD";
 import GameStatusOverlay from "@/components/GameStatusOverlay";
+import RotatePrompt from "@/components/RotatePrompt";
 import styles from "../styles/Game.module.scss";
+import { useTouchControls } from "@/game/useTouchControls";
 import {
   APEX_BAND,
   DUCK_FRAME_KEYS,
@@ -296,6 +299,20 @@ const drawBackgroundFrame = (
   }
 };
 
+const useMediaQuery = (query: string) => {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const update = () => setMatches(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, [query]);
+
+  return matches;
+};
+
 export default function Game() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const gameRef = useRef<HTMLDivElement | null>(null);
@@ -309,6 +326,17 @@ export default function Game() {
   const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [lives, setLives] = useState(3);
   const [tally, setTally] = useState<FlowerTally>(createTally());
+  const isTouch = useMediaQuery("(hover: none) and (pointer: coarse)");
+  const isPortrait = useMediaQuery("(orientation: portrait)");
+  const [immersiveActive, setImmersiveActive] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const hintShownRef = useRef(false);
+  const immersive = isTouch && immersiveActive;
+  const touchHandlers = useTouchControls({
+    enabled: immersive && gameState === "playing",
+    jumpQueuedRef,
+    downHeldRef,
+  });
 
   const syncHud = (world: GameWorld) => {
     setLives(world.player.lives);
@@ -340,12 +368,36 @@ export default function Game() {
 
   const startGame = useCallback(() => {
     const nextWorld = createWorld();
-    nextWorld.status = "playing";
+    const shouldPauseForPortrait = isTouch && isPortrait;
+    nextWorld.status = shouldPauseForPortrait ? "paused" : "playing";
     worldRef.current = nextWorld;
-    setGameState("playing");
+    setGameState(nextWorld.status);
     setLives(3);
     setTally(createTally());
     lastTimestampRef.current = null;
+    if (isTouch) {
+      setImmersiveActive(true);
+      if (!hintShownRef.current) {
+        hintShownRef.current = true;
+        setShowHint(true);
+      }
+    }
+  }, [isPortrait, isTouch]);
+
+  const exitGame = useCallback(() => {
+    if (animationRef.current !== null) {
+      cancelAnimationFrame(animationRef.current);
+      animationRef.current = null;
+    }
+    worldRef.current = createWorld();
+    lastTimestampRef.current = null;
+    downHeldRef.current = false;
+    jumpQueuedRef.current = false;
+    setImmersiveActive(false);
+    setShowHint(false);
+    setGameState("idle");
+    setLives(3);
+    setTally(createTally());
   }, []);
 
   useEffect(() => {
@@ -390,7 +442,12 @@ export default function Game() {
       return;
     }
 
-    const handleScroll = () => pauseGame();
+    const startScrollY = window.scrollY;
+    const handleScroll = () => {
+      if (!immersive && Math.abs(window.scrollY - startScrollY) > 8) {
+        pauseGame();
+      }
+    };
     const handleVisibilityChange = () => {
       if (document.hidden) {
         pauseGame();
@@ -412,7 +469,51 @@ export default function Game() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       document.removeEventListener("pointerdown", handlePointerDown);
     };
-  }, [gameState, pauseGame]);
+  }, [gameState, immersive, pauseGame]);
+
+  useEffect(() => {
+    if (!immersive) {
+      return;
+    }
+
+    const html = document.documentElement;
+    const body = document.body;
+    const previousStyles = {
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      overscrollBehavior: html.style.overscrollBehavior,
+    };
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    html.style.overscrollBehavior = "none";
+
+    return () => {
+      html.style.overflow = previousStyles.htmlOverflow;
+      body.style.overflow = previousStyles.bodyOverflow;
+      html.style.overscrollBehavior = previousStyles.overscrollBehavior;
+    };
+  }, [immersive]);
+
+  useEffect(() => {
+    const orientationQuery = window.matchMedia("(orientation: portrait)");
+    const handleOrientationChange = () => {
+      if (orientationQuery.matches && immersive && gameState === "playing") {
+        pauseGame();
+      }
+    };
+
+    orientationQuery.addEventListener("change", handleOrientationChange);
+    return () => orientationQuery.removeEventListener("change", handleOrientationChange);
+  }, [gameState, immersive, pauseGame]);
+
+  useEffect(() => {
+    if (!showHint) {
+      return;
+    }
+    const timeout = window.setTimeout(() => setShowHint(false), 2400);
+    return () => window.clearTimeout(timeout);
+  }, [showHint]);
 
   useEffect(() => {
     if (gameState !== "idle") {
@@ -710,27 +811,68 @@ export default function Game() {
     };
   }, [gameState]);
 
-  return (
-    <div ref={gameRef} className={styles.gameFrame}>
-      <canvas
-        ref={canvasRef}
-        width={CANVAS_WIDTH}
-        height={CANVAS_HEIGHT}
-        aria-label="Flower Dodger game canvas"
-        className={styles.gameFrameCanvas}
-      />
-      <div aria-hidden="true" className={styles.grainOverlay} />
-      {gameState === "playing" || gameState === "paused" ? (
-        <HUD tally={tally} lives={lives} />
+  const playing = gameState === "playing";
+  const frame = (
+    <div ref={gameRef} className={immersive ? styles.immersive : styles.wrapper}>
+      {immersive && playing ? (
+        <div className={styles.touchLayer} {...touchHandlers}>
+          {showHint ? (
+            <>
+              <div className={`${styles.hint} ${styles.hintDuck}`}>
+                HOLD OR SWIPE ↓<br />
+                DUCK
+              </div>
+              <div className={`${styles.hint} ${styles.hintJump}`}>
+                TAP
+                <br />
+                JUMP
+              </div>
+            </>
+          ) : null}
+          <div aria-hidden="true" className={styles.duckIcon}>
+            ▼
+          </div>
+        </div>
       ) : null}
-      {gameState === "idle" || gameState === "paused" || gameState === "gameover" || gameState === "won" ? (
-        <GameStatusOverlay
-          status={gameState}
-          onStart={startGame}
-          onRestart={startGame}
-          onResume={resumeGame}
+
+      <div className={styles.gameFrame}>
+        <canvas
+          ref={canvasRef}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          aria-label="Flower Dodger game canvas"
+          className={styles.gameFrameCanvas}
         />
-      ) : null}
+        <div aria-hidden="true" className={styles.grainOverlay} />
+        {playing || gameState === "paused" ? <HUD tally={tally} lives={lives} /> : null}
+        {immersive && playing ? (
+          <button
+            type="button"
+            aria-label="Pause"
+            className={styles.pauseButton}
+            onClick={pauseGame}
+          >
+            ❚❚
+          </button>
+        ) : null}
+        {gameState === "idle" ||
+        gameState === "paused" ||
+        gameState === "gameover" ||
+        gameState === "won" ? (
+          <GameStatusOverlay
+            status={gameState}
+            onStart={startGame}
+            onRestart={startGame}
+            onResume={resumeGame}
+            onExit={immersive ? exitGame : undefined}
+            touchMode={isTouch}
+          />
+        ) : null}
+      </div>
+
+      {immersive && isPortrait ? <RotatePrompt onExit={exitGame} /> : null}
     </div>
   );
+
+  return immersive ? createPortal(frame, document.body) : frame;
 }
